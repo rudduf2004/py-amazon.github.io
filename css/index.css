@@ -1,0 +1,18 @@
+.stars-container {
+  display: flex;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.star {
+  color: #ccc; /* 기본 회색 */
+}
+
+.star.half {
+  background: linear-gradient(to right, gold 50%, #ccc 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.star.filled {
+  color: gold; /* 채워진 별의 색 */
+}
