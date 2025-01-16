@@ -71,6 +71,10 @@
   }
 
   async function make(adsEl, manifest) {
+
+    let direction = adsEl.dataset.direction;
+    let imgWidth = adsEl.dataset.imgWidth;
+
     let gp = adsEl.dataset.gp;
     if (!gp || !manifest.hasOwnProperty(gp)) {
       gp = Object.keys(manifest)[0];
@@ -83,6 +87,12 @@
 
     const cardsContainer = document.createElement("div");
     cardsContainer.classList.add("ad-cards-container");
+    if (imgWidth) {
+      cardsContainer.style.setProperty('--amazon_ad_area-img-width',`${imgWidth}px`);
+    }
+    if (direction == 'row') {
+      cardsContainer.classList.add("ad-cards-container--row");
+    }
     const aCards = makeACard(item, gpData.updated_at);
     cardsContainer.innerHTML = aCards;
     adsEl.appendChild(cardsContainer);

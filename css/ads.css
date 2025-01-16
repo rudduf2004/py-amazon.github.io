@@ -117,3 +117,17 @@
 .ad-cards-container .stars-container .star.filled {
   color: gold; /* 채워진 별의 색 */
 }
+
+
+.ad-cards-container--row .a-card {
+  flex-direction: row;
+}
+
+.ad-cards-container--row .a-card-img-container {
+  height: 100%;
+  flex: 0 0 var(--amazon_ad_area-img-width, 150px);
+}
+
+.ad-cards-container--row .a-card-desc-container {
+  flex: 1;
+}
