@@ -1,45 +1,12 @@
-body,
-html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-img {
-  border: 0;
-  vertical-align: middle;
-}
-
-.container {
-  display: flex;
-  flex-wrap: nowrap;
-  height: 100%;
-  min-width: 100%;
-  overflow: hidden;
-  position: relative;
-  width: 1px;
-}
-
 
 /* Card Styles */
-.cards-container {
+.ad-cards-container {
   flex:1;
   display: flex;
   height: 100%;
   min-width: 100%;
 }
-.a-card {
+.ad-cards-container .a-card {
   display: flex;
   flex-direction: column;
   flex:1;
@@ -52,7 +19,7 @@ img {
   align-items: center;
   position: relative;
 }
-.a-card-img-container {
+.ad-cards-container .a-card-img-container {
   display: flex;
   flex:1;
   width: 100%;
@@ -60,14 +27,14 @@ img {
   overflow: hidden;
 }
 
-.a-card-desc-container {
+.ad-cards-container .a-card-desc-container {
   display: flex;
   flex-direction: column;
   margin: 10px;
   position: relative;
 }
 
-.a-card img {
+.ad-cards-container .a-card img {
   position: absolute;
   width: 100%;
   top: 50%;
@@ -75,65 +42,65 @@ img {
   transform: translate(-50%, -50%);
 }
 
-.a-card .a-link-normal {
+.ad-cards-container .a-card .a-link-normal {
   text-decoration: none;
   color: #2162a1;
 }
 
-.a-card .a-link-normal:hover {
+.ad-cards-container .a-card .a-link-normal:hover {
   text-decoration: underline;
 }
 
-.a-card .css-line-clamp-3 {
+.ad-cards-container .a-card .css-line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.a-card .a-color-price {
+.ad-cards-container .a-card .a-color-price {
   color: #b12704;
   font-size: 14px;
 }
 
-.a-card .a-size-small {
+.ad-cards-container .a-card .a-size-small {
   font-size: 12px;
 }
 
-.a-card .a-size-super-small {
+.ad-cards-container .a-card .a-size-super-small {
   font-size: 10px;
 }
 
-.a-card .a-row {
+.ad-cards-container .a-card .a-row {
   width: 100%;
   overflow: hidden;
 }
-.a-card-rating-container {
+.ad-cards-container .a-card-rating-container {
   display: flex;
   gap: 10px;
 }
-.a-card-updated{
+.ad-cards-container .a-card-updated{
   position: absolute;
   bottom: 0;
   right: 0;
 }
 
 /* Stars Styles */
-.stars-container {
+.ad-cards-container .stars-container {
   display: flex;
   font-size: 18px;
   line-height: 1;
 }
 
-.star {
+.ad-cards-container .stars-container .star {
   color: #ccc; /* 기본 회색 */
 }
 
-.star.half {
+.ad-cards-container .stars-container .star.half {
   background: linear-gradient(to right, gold 50%, #ccc 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.star.filled {
+.ad-cards-container .stars-container .star.filled {
   color: gold; /* 채워진 별의 색 */
 }
