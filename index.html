@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Rating</title>
+  <style>
+    .stars-container {
+      display: flex;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .star {
+      color: #ccc; /* 기본 회색 */
+    }
+
+    .star.half {
+        background: linear-gradient(to right, gold 50%, #ccc 50%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .star.filled {
+      color: gold; /* 채워진 별의 색 */
+    }
+  </style>
+</head>
+<body>
+  <div id="rating-container">
+    <div class="stars-container">
+      <!-- 별 5개 -->
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+    </div>
+  </div>
+
+  <script>
+    function setRating(rating) {
+      const stars = document.querySelectorAll('.star'); // 모든 별 요소 선택
+      stars.forEach((star, index) => {
+        star.classList.remove('half');
+        star.classList.remove('filled');
+        // rating이 1 이상일 때는 전체 채우기, 0.5면 반 채우기
+        if (rating >= index + 1) {
+          star.classList.add('filled'); // 채워진 별
+        } else if (rating > index && rating < index + 1) {
+        star.classList.add('half'); // 채워진 별
+        }
+      });
+    }
+
+    // 별점 설정 예제
+    const rating = '2'; // 0.0 ~ 5.0 값 설정
+    setRating(rating);
+  </script>
+</body>
+</html>
