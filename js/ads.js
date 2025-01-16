@@ -1,7 +1,9 @@
 "use strict";
 
 (() => {
-  const host = "http://127.0.0.1:3000";
+  // const csshost = "http://127.0.0.1:3000";
+  const csshost = "https://ads.trendhub.app";
+  const datahost = "https://ads.trendhub.app";
   function makeRatingContainer(rating) {
     const container = document.createElement("div");
     container.classList.add("rating-container");
@@ -33,7 +35,7 @@
       <div class="a-row">
         <a class="a-card-rating-container a-link-normal" href="${
           item.url
-        }" rel="opener" target="_blank">
+        }" rel="nofollow" target="_blank">
           ${makeRatingContainer(item.rating).innerHTML}
           ${reviews_html}
         </a>
@@ -44,7 +46,7 @@
     if (item.price) {
       price_html = `
       <div class="a-row">
-          <a class="a-link-normal" href="${item.url}" rel="opener" target="_blank">
+          <a class="a-link-normal" href="${item.url}" rel="nofollow" target="_blank">
             <div class="a-color-price">${item.price}</div>
           </a>
       </div>`;
@@ -53,12 +55,12 @@
     return `
     <div class="a-card">
       <div class="a-card-img-container">
-        <a class="a-link-normal" href="${item.url}" rel="opener" target="_blank">
+        <a class="a-link-normal" href="${item.url}" rel="nofollow" target="_blank">
           <img src="${item.img}" alt="${item.url}">
         </a>
       </div>
       <div class="a-card-desc-container">
-        <a class="a-link-normal" href="${item.url}" rel="opener" target="_blank">
+        <a class="a-link-normal" href="${item.url}" rel="nofollow" target="_blank">
             <div class="css-line-clamp-3">${item.title}</div>
         </a>
         ${rating_html}
@@ -68,32 +70,38 @@
     </div>`;
   }
 
-  async function main() {
-    const manifestRes = await fetch(`${host}/datas/manifest.json`);
-    const manifest = await manifestRes.json();
-
-    const search = new URLSearchParams(document.location.search);
-    let gp = search.get("gp");
+  async function make(adsEl, manifest) {
+    let gp = adsEl.dataset.gp;
     if (!gp || !manifest.hasOwnProperty(gp)) {
       gp = Object.keys(manifest)[0];
     }
     const gpVer = manifest[gp];
-    const gpRes = await fetch(`${host}/datas/${gp}.json?v=${gpVer}`);
+    const gpRes = await fetch(`${datahost}/datas/${gp}.json?v=${gpVer}`);
     const gpData = await gpRes.json();
     const randomIndex = Math.floor(Math.random() * gpData.items.length);
     const item = gpData.items[randomIndex];
 
-    const containerEl = document.getElementById("container");
-    if (!containerEl) return;
     const cardsContainer = document.createElement("div");
     cardsContainer.classList.add("ad-cards-container");
     const aCards = makeACard(item, gpData.updated_at);
     cardsContainer.innerHTML = aCards;
-    containerEl.appendChild(cardsContainer);
+    adsEl.appendChild(cardsContainer);
+    adsEl.style.display = '';
+  }
+
+  async function init() {
+    const manifestRes = await fetch(`${datahost}/datas/manifest.json`);
+    const manifest = await manifestRes.json();
+
+    const adsEls = document.getElementsByClassName("amazon_ad_area");
+    for (const adsEl of adsEls) {
+      make(adsEl, manifest);
+    }
   }
   document.addEventListener("DOMContentLoaded", (event) => {
-    loadExternalStyle(`${host}/css/ads.css`);
-    main();
+    loadExternalStyle(`${csshost}/css/ads.css`);
+    init();
+    
   });
 
   function loadExternalStyle(url) {
