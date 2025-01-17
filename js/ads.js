@@ -98,9 +98,28 @@
     adsEl.appendChild(cardsContainer);
     adsEl.style.display = '';
   }
+  function generateVersionString() {
+    const now = new Date();
 
+    // 시간을 5분 간격으로 조정
+    const minutes = now.getMinutes();
+    const adjustedMinutes = Math.floor(minutes / 5) * 5;
+    now.setMinutes(adjustedMinutes);
+    now.setSeconds(0);
+    now.setMilliseconds(0);
+
+    // 버전 문자열 생성 (YYYYMMDD-HHmm 형식)
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const date = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const mins = String(now.getMinutes()).padStart(2, '0');
+
+    return `${year}${month}${date}${hours}${mins}`;
+  }
+  let ver = generateVersionString();
   async function init() {
-    const manifestRes = await fetch(`${datahost}/datas/manifest.json`);
+    const manifestRes = await fetch(`${datahost}/datas/manifest.json?v=${ver}`);
     const manifest = await manifestRes.json();
 
     const adsEls = document.getElementsByClassName("amazon_ad_area");
@@ -109,7 +128,7 @@
     }
   }
   document.addEventListener("DOMContentLoaded", (event) => {
-    loadExternalStyle(`${csshost}/css/ads.css`);
+    loadExternalStyle(`${csshost}/css/ads.css?v=${ver}`);
     init();
     
   });
