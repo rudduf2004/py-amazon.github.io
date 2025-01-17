@@ -75,10 +75,14 @@
     let direction = adsEl.dataset.direction;
     let imgWidth = adsEl.dataset.imgWidth;
 
+    const gps = Object.keys(manifest);
+
     let gp = adsEl.dataset.gp;
     if (!gp || !manifest.hasOwnProperty(gp)) {
-      gp = Object.keys(manifest)[0];
+      const randomGpIndex = Math.floor(Math.random() * gps.length);
+      gp = gps[randomGpIndex];
     }
+    // console.log(gp)
     const gpVer = manifest[gp];
     const gpRes = await fetch(`${datahost}/datas/${gp}.json?v=${gpVer}`);
     const gpData = await gpRes.json();
@@ -121,6 +125,9 @@
   async function init() {
     const manifestRes = await fetch(`${datahost}/datas/manifest.json?v=${ver}`);
     const manifest = await manifestRes.json();
+    if (!manifest || Object.keys(manifest).length === 0) {
+      return;
+    }
 
     const adsEls = document.getElementsByClassName("amazon_ad_area");
     for (const adsEl of adsEls) {
