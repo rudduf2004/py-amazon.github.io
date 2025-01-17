@@ -45,6 +45,7 @@
   flex-direction: column;
   margin: 10px;
   position: relative;
+  width: 100%;
 }
 
 .ad-cards-container .a-card img {
