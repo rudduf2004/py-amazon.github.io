@@ -27,9 +27,11 @@ function makeACard(item,updated_at){
     let reviews_html = `<span class="a-size-small">${item.reviews}</span>`;
     rating_html = `
       <div class="a-row">
-        <a class="a-card-rating-container a-link-normal" href="${item.url}" rel="opener" target="_blank">
-          ${makeRatingContainer(item.rating).innerHTML}
-          ${reviews_html}
+        <a class="a-link-normal" href="${item.url}" rel="opener" target="_blank">
+          <div class="a-card-rating-container">
+            ${makeRatingContainer(item.rating).innerHTML}
+            ${reviews_html}
+          </div>
         </a>
       </div>
     `

@@ -32,12 +32,14 @@
     if (item.rating) {
       let reviews_html = `<span class="a-size-small">${item.reviews}</span>`;
       rating_html = `
-      <div class="a-row">
-        <a class="a-card-rating-container a-link-normal" href="${
+      <div class="a-row a-row-rating">
+        <a class="a-link-normal" href="${
           item.url
         }" rel="nofollow" target="_blank">
-          ${makeRatingContainer(item.rating).innerHTML}
-          ${reviews_html}
+          <div class="a-card-rating-container">
+            ${makeRatingContainer(item.rating).innerHTML}
+            ${reviews_html}
+          </div>
         </a>
       </div>
     `;
@@ -45,7 +47,7 @@
     let price_html = "";
     if (item.price) {
       price_html = `
-      <div class="a-row">
+      <div class="a-row a-row-price">
           <a class="a-link-normal" href="${item.url}" rel="nofollow" target="_blank">
             <div class="a-color-price">${item.price}</div>
           </a>

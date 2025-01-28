@@ -92,6 +92,7 @@
 .ad-cards-container .a-card-rating-container {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 .ad-cards-container .a-card-updated{
   position: absolute;
@@ -121,17 +122,26 @@
 }
 
 
-.ad-cards-container--row .a-card {
+.ad-cards-container.ad-cards-container--row .a-card {
   flex-direction: row;
 }
 
-.ad-cards-container--row .a-card-img-container {
+.ad-cards-container.ad-cards-container--row .a-card-img-container {
   height: 100%;
   flex: 0 0 var(--amazon_ad_area-img-width, 150px);
 }
 
-.ad-cards-container--row .a-card-desc-container {
+.ad-cards-container.ad-cards-container--row .a-card-desc-container {
   flex: 1;
   height: 100%;
   padding: 5px;
+}
+
+.ad-cards-container.ad-cards-container--row .a-row-rating {
+  line-height: 15px;
+}
+
+.ad-cards-container.ad-cards-container--row .stars-container {
+  font-size: 12px;
+  line-height: 1;
 }
