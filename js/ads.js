@@ -136,7 +136,7 @@
       make(adsEl, manifest);
     }
   }
-  let cssver = '20250128_0';
+  let cssver = '20250128_1';
   document.addEventListener("DOMContentLoaded", (event) => {
     loadExternalStyle(`${csshost}/css/ads.css?v=${cssver}`);
     init();
